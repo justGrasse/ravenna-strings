@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+
 import "./globals.css";
+import StyledComponentsRegistry from 'ravenna/app/lib/registry'
 import NavBar from "ravenna/app/components/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,8 +22,10 @@ export default function RootLayout({
     return (
         <html lang="en">
         <body className={inter.className}>
-        <NavBar/>
-        {children}
+        <StyledComponentsRegistry>
+            <NavBar/>
+            {children}
+        </StyledComponentsRegistry>
       </body>
     </html>
   );
