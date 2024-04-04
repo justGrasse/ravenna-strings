@@ -54,7 +54,7 @@ const NavBar = () => {
                     {links.map(({id, label, link}) => (
                         <HeaderLink
                             key={id}
-                            className="nav-links px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 hover:text-white duration-200 link-underline"
+                            className="nav-links px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 hover:text-white duration-200 link-underline font-serif"
                         >
                             <Link href={link}>{label}</Link>
                         </HeaderLink>
@@ -90,7 +90,6 @@ const HeaderLinkContainer = styled.div`
 
 const HeaderLink = styled.div`
     text-align: center;
-    font-family: "Times New Roman",serif;
     font-size: large;
     min-width: 140px;
     min-height: 40px;
