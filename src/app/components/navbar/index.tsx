@@ -2,13 +2,10 @@
 
 import Link from "next/link";
 import Image from 'next/image';
-import React, { useState } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
+import React from "react";
 import styled from "styled-components";
 
 const NavBar = () => {
-    const [nav, setNav] = useState(false);
-
     const links = [
         {
             id: 1,
@@ -49,50 +46,62 @@ const NavBar = () => {
 
     return (
         <HeaderDiv>
-            <Link href="/">
-                <Image src="/images/header_banner.gif" alt="Banner" width={640} height={140} />
-            </Link>
-            <div className="flex justify-between items-center w-full h-20 px-4 text-white bg-black fixed nav">
-                <ul className="hidden md:flex">
+            <HeaderContent>
+                <Link href="/" className="w-full">
+                    <StyledImage src="/images/header_banner.gif" alt="Banner" width={640} height={140} />
+                </Link>
+                <HeaderLinkContainer className="nav">
                     {links.map(({id, label, link}) => (
-                        <li
+                        <HeaderLink
                             key={id}
                             className="nav-links px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 hover:text-white duration-200 link-underline"
                         >
                             <Link href={link}>{label}</Link>
-                        </li>
+                        </HeaderLink>
                     ))}
-                </ul>
-
-                <div
-                    onClick={() => setNav(!nav)}
-                    className="cursor-pointer pr-4 z-10 text-gray-500 md:hidden"
-                >
-                    {nav ? <FaTimes size={30}/> : <FaBars size={30}/>}
-                </div>
-
-                {nav && (
-                    <ul className="flex flex-col justify-center items-center absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-black to-gray-800 text-gray-500">
-                        {links.map(({id, label, link}) => (
-                            <li
-                                key={id}
-                                className="px-4 cursor-pointer capitalize py-6 text-4xl"
-                            >
-                                <Link onClick={() => setNav(!nav)} href={link}>
-                                    {label}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                )}
-            </div>
+                </HeaderLinkContainer>
+            </HeaderContent>
         </HeaderDiv>
     );
 };
 
 const HeaderDiv = styled.div`
-    width: 800px;
     margin: 0 auto;
+`;
+
+const HeaderContent = styled.div`
+    max-width: 640px;
+    margin: 0 auto;
+`;
+
+const StyledImage = styled(Image)`
+    margin: 0 auto;
+`;
+
+const HeaderLinkContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.8rem 0;
+    flex-wrap: wrap;
+    width: 100%;
+    background-color: #2f140a;
+`;
+
+const HeaderLink = styled.div`
+    text-align: center;
+    font-family: "Times New Roman",serif;
+    font-size: large;
+    min-width: 140px;
+    min-height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #f5f5dc;
+    :hover {
+        --tw-text-opacity: 1;
+        color: #ffd700;
+    }
 `;
 
 export default NavBar;
